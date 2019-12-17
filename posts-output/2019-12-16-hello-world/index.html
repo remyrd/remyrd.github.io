@@ -2,16 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Remy Rojas: Hello World</title>
+    <title>Remy Rojas: How this came to be</title>
     
-<meta name="keywords" content="cryogen">
-
-<meta name="description" content="In the beginning there was darkness..">
-
-<meta property="og:description" content="In the beginning there was darkness..">
+<meta name="keywords" content="">
 
 <meta property="og:url" content="https://remy.rojas.cz/posts-output/2019-12-16-hello-world/" />
-<meta property="og:title" content="Hello World" />
+<meta property="og:title" content="How this came to be" />
 <meta property="og:type" content="article" />
 
     <link rel="canonical" href="https://remy.rojas.cz/posts-output/2019-12-16-hello-world/">
@@ -68,20 +64,69 @@
         <div class="col-lg-6">December 16, 2019</div>
         
     </div>
-    <h2>Hello World</h2>
+    <h2>How this came to be</h2>
 </div>
 <div>
-    <ol class="toc"><li><a href="#in-the-beginning-there-was-darkness..">In the beginning there was darkness..</a></li></ol>
-    <h1 id="in-the-beginning-there-was-darkness..">In the beginning there was darkness..</h1>
-<p>And it was good.</p>
+    <ol class="toc"><li><a href="#static-site-generator">Static site generator</a></li><li><a href="#automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</a></li></ol>
+    <pre><code>&lt;tl;dr&gt;
+    Cryogen + builds.sr.ht + github pages
+&lt;/tl;dr&gt;
+</code></pre>
+<p>A couple days back, I had the itch of getting a personal website. Mainly to stop maintaining a CV in <code>Latex</code> and have an easy reference to it.</p>
+<p>There were a couple requirements I had in mind, both from the toolset and maintainability perspectives.</p>
+<p>The site needed to be/have:</p>
+<ul>
+<li>Statically generated</li>
+<li>Markdown editing</li>
+<li>Written in Clojure</li>
+<li>Tweakable</li>
+</ul>
+<p>The workflow should be setup once. Thereafter:</p>
+<ul>
+<li>Write</li>
+<li>Commit</li>
+<li>Push</li>
+<li>??</li>
+<li>Profit</li>
+</ul>
+<h3 id="static-site-generator">Static site generator</h3>
+<p>I soon figured <a href="https://cryogenweb.org"><strong>Cryogen</strong></a> was an ideal candidate meeting all the requirements. Besides setting up a custom markdown command to get tables compile the same way org-mode writes them, the experience was pretty much out-of-the-box.</p>
+<h3 id="automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</h3>
+<p>The compiled page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
+<p>The build script pulls both projects, builds the sources, copy/pastes the resulting page, and pushes to Github.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">packages</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> clojure</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> leiningen</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandoc</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">sources</span><span class="kw">:</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@git.sr.ht:~popo/blog</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@github.com:remyrd/remyrd.github.io</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">secrets</span><span class="kw">:</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> dd63135f-599a-40f2-aad1-2a4e1fbc5d2c</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">tasks</span><span class="kw">:</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">  - </span><span class="fu">setup</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>      git config --global user.name &quot;Remy Rojas&quot;</span>
+<span id="cb2-14"><a href="#cb2-14"></a>      git config --global user.email &quot;remy@rojas.cz&quot;</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">  - </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>      cd blog</span>
+<span id="cb2-17"><a href="#cb2-17"></a>      lein run</span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">  - </span><span class="fu">update-github</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>      ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span>
+<span id="cb2-20"><a href="#cb2-20"></a>      cd remyrd.github.io</span>
+<span id="cb2-21"><a href="#cb2-21"></a>      git rm -rf .</span>
+<span id="cb2-22"><a href="#cb2-22"></a>      cp -r ../blog/public/* .</span>
+<span id="cb2-23"><a href="#cb2-23"></a>      git add *</span>
+<span id="cb2-24"><a href="#cb2-24"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
+<span id="cb2-25"><a href="#cb2-25"></a>      git push</span></code></pre></div>
+<p>After registering an ssh key in github and letting <code>builds.sr.ht</code> use it through <code>secrets</code>, we can effectively forget about ever touching Github again. <strong>In 25 lines of yaml</strong>.</p>
+<p>Note to self: would be interesting to <code>slurp</code> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
 
 </div>
 
 
     <div id="prev-next">
         
-        
-        <a class="right" href="/posts-output/2016-01-07-docs/">Quick Start Guide &raquo;</a>
         
     </div>
 
@@ -98,7 +143,7 @@
                 <h3>Links</h3>
                 <ul id="links">
                     
-                    <li><a href="/pages-output/cv/">Curriculum</a></li>
+                    <li><a href="/pages-output/cv/">CV</a></li>
                     
                 </ul>
                 
@@ -106,22 +151,11 @@
                     <h3>Recent Posts</h3>
                     <ul>
                         
-                        <li><a href="/posts-output/2019-12-16-hello-world/">Hello World</a></li>
-                        
-                        <li><a href="/posts-output/2016-01-07-docs/">Quick Start Guide</a></li>
+                        <li><a href="/posts-output/2019-12-16-hello-world/">How this came to be</a></li>
                         
                     </ul>
                 </div>
                 
-                
-                <div id="tags">
-                    <h3>Tags</h3>
-                    <ul>
-                        
-                        <li><a href="/tags-output/cryogen/">cryogen</a></li>
-                        
-                    </ul>
-                </div>
                 
             </div>
         </div>
