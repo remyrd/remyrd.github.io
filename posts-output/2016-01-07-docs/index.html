@@ -6,9 +6,9 @@
     
 <meta name="keywords" content="cryogen">
 
-<meta name="description" content="This intro only documents a subset of Cryogen&#39;s features. For additional documentation please see the cryogen site.Features">
+<meta name="description" content="This intro only documents a subset of Cryogen’s features. For additional documentation please see the cryogen site.">
 
-<meta property="og:description" content="This intro only documents a subset of Cryogen&#39;s features. For additional documentation please see the cryogen site.Features">
+<meta property="og:description" content="This intro only documents a subset of Cryogen’s features. For additional documentation please see the cryogen site.">
 
 <meta property="og:url" content="https://remy.rojas.cz/posts-output/2016-01-07-docs/" />
 <meta property="og:title" content="Quick Start Guide" />
@@ -71,72 +71,128 @@
     <h2>Quick Start Guide</h2>
 </div>
 <div>
-    <ol class="toc"><li><a href="#features">Features</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#usage">Usage</a></li><ol><li><a href="#creating_a_new_site">Creating a New Site</a></li><li><a href="#running_the_server">Running the Server</a></li><li><a href="#site_configuration">Site Configuration</a></li><li><a href="#switching_between_markdown_and_asciidoc">Switching between Markdown and AsciiDoc</a></li><li><a href="#selecting_a_theme">Selecting a Theme</a></li><li><a href="#customizing_layouts">Customizing Layouts</a></li><li><a href="#code_syntax_highlighting">Code Syntax Highlighting</a></li></ol><li><a href="#deploying_your_site">Deploying Your Site</a></li><li><a href="#third_party_libraries">Third Party Libraries</a></li><ol><li><a href="#https://github.com/greywolve/cryogen-markdown-external">https://github.com/greywolve/cryogen-markdown-external</a></li></ol><li><a href="#some_sites_made_with_cryogen">Some Sites Made With Cryogen</a></li></ol>
-    <p>This intro only documents a subset of Cryogen's features. For additional documentation please see the <a href='http://cryogenweb.org'>cryogen site</a>.</p><h2 id="features">Features</h2><ul><li>Blog posts and pages with Markdown (default) or AsciiDoc</li><li>Tags</li><li>Table of contents generation</li><li>Plain HTML page templates</li><li>Code syntax highlighting</li><li>Disqus support</li><li>Sitemap generation</li><li>RSS feed generation</li><li>Sass/SCSS compilation</li><li>Klipse Integration</li></ul><h2 id="prerequisites">Prerequisites</h2><p>You will need <a href='https://github.com/technomancy/leiningen'>Leiningen</a> 2.5.0 or above installed.</p><h2 id="usage">Usage</h2><h3 id="creating&#95;a&#95;new&#95;site">Creating a New Site</h3><p>A new site can be created using the Cryogen template as follows:</p><pre><code>lein new cryogen my-blog
-</code></pre><h3 id="running&#95;the&#95;server">Running the Server</h3><p>The web server can be started from the <code>my-blog</code> directory using the <code>lein-ring</code> plugin:</p><pre><code>lein ring server
-</code></pre><p>The server will watch for changes in the <code>content</code> and <code>themes</code> folders and recompile the content automatically.</p><p>You can also generate the content without bringing up a server via:</p><pre><code>lein run
-</code></pre><h3 id="site&#95;configuration">Site Configuration</h3><p>The site configuration file is found at <code>content/config.edn</code>, this file looks as follows:</p><pre><code class="clojure">{:site-title                   &quot;My Awesome Blog&quot;
- :author                       &quot;Bob Bobbert&quot;
- :description                  &quot;This blog is awesome&quot;
- :site-url                     &quot;http://blogawesome.com/&quot;
- :post-root                    &quot;posts&quot;
- :page-root                    &quot;pages&quot;
- :post-root-uri                &quot;posts-output&quot;
- :page-root-uri                &quot;pages-output&quot;
- :tag-root-uri                 &quot;tags-output&quot;
- :author-root-uri              &quot;authors-output&quot;
- :public-dest                  &quot;public&quot;
- :blog-prefix                  &quot;/blog&quot;
- :rss-name                     &quot;feed.xml&quot;
- :rss-filters                  &#91;&quot;cryogen&quot;&#93;
- :recent-posts                 3
- :post-date-format             &quot;yyyy-MM-dd&quot;
- :archive-group-format         &quot;yyyy MMMM&quot;
- :sass-src                     &#91;&#93;
- :sass-path                    &quot;sass&quot;
- :theme                        &quot;blue&quot;
- :resources                    &#91;&quot;img&quot;&#93;
- :keep-files                   &#91;&quot;.git&quot;&#93;
- :disqus?                      false
- :disqus-shortname             &quot;&quot;
- :ignored-files                &#91;#&quot;\.#.&#42;&quot; #&quot;.&#42;\.swp$&quot;&#93;
- :previews?                    false
- :posts-per-page               5
- :blocks-per-preview           2
- :clean-urls                   :trailing-slash
- :collapse-subdirs?            false
- :hide-future-posts?           true
- :klipse                       {}
- :description-include-elements #{:p :h1 :h2 :h3 :h4 :h5 :h6}
- :debug?                       false}
-</code></pre><p>For information about each key please see the <a href='http://cryogenweb.org/docs/configuration.html'>"Configuration"</a> portion of the Cryogen documentation site.</p><h3 id="switching&#95;between&#95;markdown&#95;and&#95;asciidoc">Switching between Markdown and AsciiDoc</h3><p>Cryogen comes with Markdown support as default. If you want to use AsciiDoc instead, open the <code>project.clj</code> in your created blog (e.g. <code>my-blog</code>), and change the line in <code>:dependencies</code> that says <code>cryogen-markdown</code> to <code>cryogen-asciidoc</code>. Instead of looking for files ending in <code>.md</code> in the <code>content/md</code> directory, the compiler will now look for files ending in <code>.asc</code> in the <code>content/asc</code> directory.</p><h3 id="selecting&#95;a&#95;theme">Selecting a Theme</h3><p>The Cryogen template comes with three themes in the <code>themes</code> folder. To change your blog's theme, change the value of the <code>:theme</code> key in <code>config.edn</code>. Note that the Nucleus theme is obtained from <a href='http://www.downloadwebsitetemplates.co.uk/template/nucleus/'>downloadwebsitetemplates.co.uk</a> that requires you to keep the footer, unless you make a donation on their website.</p><h3 id="customizing&#95;layouts">Customizing Layouts</h3><p>Cryogen uses <a href='https://github.com/yogthos/Selmer'>Selmer</a> templating engine for layouts. Please refer to its documentation to see the supported tags and filters for the layouts.</p><p>The layouts are contained in the <code>themes/{theme}/html</code> folder of the project. By default, the <code>base.html</code> layout is used to provide the general layout for the site. This is where you would add static resources such as CSS and JavaScript assets as well as define headers and footers for your site.</p><p>Each page layout should have a name that matches the <code>:layout</code> key in the page metadata and end with <code>.html</code>. Page layouts extend the base layout and should only contain the content relaveant to the page inside the <code>content</code> block. For example, the <code>tag</code> layout is located in <code>tag.html</code> and looks as follows:</p><pre><code class="xml">{% extends &quot;/html/base.html&quot; %}
-{% block content %}
-&lt;div id=&quot;posts-by-tag&quot;&gt;
-    &lt;h2&gt;Posts tagged {{name}}&lt;/h2&gt;
-    &lt;ul&gt;
-    {% for post in posts %}
-        &lt;li&gt;
-            &lt;a href=&quot;{{post.uri}}&quot;&gt;{{post.title}}&lt;/a&gt;
-        &lt;/li&gt;
-    {% endfor %}
-    &lt;/ul&gt;
-&lt;/div&gt;
-{% endblock %}
-</code></pre><h3 id="code&#95;syntax&#95;highlighting">Code Syntax Highlighting</h3><p>Cryogen uses <a href='https://highlightjs.org/'>Highlight.js</a> for code syntax highlighting. You can add more languages by replacing <code>themes/{theme}/js/highlight.pack.js</code> with a customized package from <a href='https://highlightjs.org/download/'>here</a>.</p><p>The <code> initHighlightingOnLoad</code> function is called in <code>themes/{theme}/html/base.html</code>.</p><pre><code class="xml">&lt;script&gt;hljs.initHighlightingOnLoad&#40;&#41;;&lt;/script&gt;
-</code></pre><h2 id="deploying&#95;your&#95;site">Deploying Your Site</h2><p>The generated static content will be found under the <code>public</code> folder. Simply copy the content to a static folder for a server such as Nginx or Apache and your site is now ready for service.</p><p>A sample Nginx configuration that's placed in <code>/etc/nginx/sites-available/default</code> can be seen below:</p><pre><code class="javascript">server {
-  listen 80 default&#95;server;
-  listen &#91;::&#93;:80 default&#95;server ipv6only=on;
-  server&#95;name localhost &lt;yoursite.com&gt; &lt;www.yoursite.com&gt;;
+    <ol class="toc"><li><a href="#features">Features</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#usage">Usage</a></li><ol><li><a href="#creating-a-new-site">Creating a New Site</a></li><li><a href="#running-the-server">Running the Server</a></li><li><a href="#site-configuration">Site Configuration</a></li><li><a href="#switching-between-markdown-and-asciidoc">Switching between Markdown and AsciiDoc</a></li><li><a href="#selecting-a-theme">Selecting a Theme</a></li><li><a href="#customizing-layouts">Customizing Layouts</a></li><li><a href="#code-syntax-highlighting">Code Syntax Highlighting</a></li></ol><li><a href="#deploying-your-site">Deploying Your Site</a></li><li><a href="#third-party-libraries">Third Party Libraries</a></li><ol><li><a href="#httpsgithub.comgreywolvecryogen-markdown-external">https://github.com/greywolve/cryogen-markdown-external</a></li></ol><li><a href="#some-sites-made-with-cryogen">Some Sites Made With Cryogen</a></li></ol>
+    <p>This intro only documents a subset of Cryogen’s features. For additional documentation please see the <a href="http://cryogenweb.org">cryogen site</a>.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Blog posts and pages with Markdown (default) or AsciiDoc</li>
+<li>Tags</li>
+<li>Table of contents generation</li>
+<li>Plain HTML page templates</li>
+<li>Code syntax highlighting</li>
+<li>Disqus support</li>
+<li>Sitemap generation</li>
+<li>RSS feed generation</li>
+<li>Sass/SCSS compilation</li>
+<li>Klipse Integration</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You will need <a href="https://github.com/technomancy/leiningen">Leiningen</a> 2.5.0 or above installed.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="creating-a-new-site">Creating a New Site</h3>
+<p>A new site can be created using the Cryogen template as follows:</p>
+<pre><code>lein new cryogen my-blog</code></pre>
+<h3 id="running-the-server">Running the Server</h3>
+<p>The web server can be started from the <code>my-blog</code> directory using the <code>lein-ring</code> plugin:</p>
+<pre><code>lein ring server</code></pre>
+<p>The server will watch for changes in the <code>content</code> and <code>themes</code> folders and recompile the content automatically.</p>
+<p>You can also generate the content without bringing up a server via:</p>
+<pre><code>lein run</code></pre>
+<h3 id="site-configuration">Site Configuration</h3>
+<p>The site configuration file is found at <code>content/config.edn</code>, this file looks as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode clojure"><code class="sourceCode clojure"><span id="cb4-1"><a href="#cb4-1"></a>{<span class="at">:site-title</span>                   <span class="st">&quot;My Awesome Blog&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a> <span class="at">:author</span>                       <span class="st">&quot;Bob Bobbert&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a> <span class="at">:description</span>                  <span class="st">&quot;This blog is awesome&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a> <span class="at">:site-url</span>                     <span class="st">&quot;http://blogawesome.com/&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a> <span class="at">:post-root</span>                    <span class="st">&quot;posts&quot;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a> <span class="at">:page-root</span>                    <span class="st">&quot;pages&quot;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a> <span class="at">:post-root-uri</span>                <span class="st">&quot;posts-output&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a> <span class="at">:page-root-uri</span>                <span class="st">&quot;pages-output&quot;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a> <span class="at">:tag-root-uri</span>                 <span class="st">&quot;tags-output&quot;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a> <span class="at">:author-root-uri</span>              <span class="st">&quot;authors-output&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a> <span class="at">:public-dest</span>                  <span class="st">&quot;public&quot;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a> <span class="at">:blog-prefix</span>                  <span class="st">&quot;/blog&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a> <span class="at">:rss-name</span>                     <span class="st">&quot;feed.xml&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a> <span class="at">:rss-filters</span>                  [<span class="st">&quot;cryogen&quot;</span>]</span>
+<span id="cb4-15"><a href="#cb4-15"></a> <span class="at">:recent-posts</span>                 <span class="dv">3</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a> <span class="at">:post-date-format</span>             <span class="st">&quot;yyyy-MM-dd&quot;</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a> <span class="at">:archive-group-format</span>         <span class="st">&quot;yyyy MMMM&quot;</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a> <span class="at">:sass-src</span>                     []</span>
+<span id="cb4-19"><a href="#cb4-19"></a> <span class="at">:sass-path</span>                    <span class="st">&quot;sass&quot;</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a> <span class="at">:theme</span>                        <span class="st">&quot;blue&quot;</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a> <span class="at">:resources</span>                    [<span class="st">&quot;img&quot;</span>]</span>
+<span id="cb4-22"><a href="#cb4-22"></a> <span class="at">:keep-files</span>                   [<span class="st">&quot;.git&quot;</span>]</span>
+<span id="cb4-23"><a href="#cb4-23"></a> <span class="at">:disqus</span>?                      <span class="va">false</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a> <span class="at">:disqus-shortname</span>             <span class="st">&quot;&quot;</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a> <span class="at">:ignored-files</span>                [<span class="ss">#&quot;\.#.*&quot;</span> <span class="ss">#&quot;.*\.swp$&quot;</span>]</span>
+<span id="cb4-26"><a href="#cb4-26"></a> <span class="at">:previews</span>?                    <span class="va">false</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a> <span class="at">:posts-per-page</span>               <span class="dv">5</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a> <span class="at">:blocks-per-preview</span>           <span class="dv">2</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a> <span class="at">:clean-urls</span>                   <span class="at">:trailing-slash</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a> <span class="at">:collapse-subdirs</span>?            <span class="va">false</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a> <span class="at">:hide-future-posts</span>?           <span class="va">true</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a> <span class="at">:klipse</span>                       {}</span>
+<span id="cb4-33"><a href="#cb4-33"></a> <span class="at">:description-include-elements</span> #{<span class="at">:p</span> <span class="at">:h1</span> <span class="at">:h2</span> <span class="at">:h3</span> <span class="at">:h4</span> <span class="at">:h5</span> <span class="at">:h6</span>}</span>
+<span id="cb4-34"><a href="#cb4-34"></a> <span class="at">:debug</span>?                       <span class="va">false</span>}</span></code></pre></div>
+<p>For information about each key please see the <a href="http://cryogenweb.org/docs/configuration.html">“Configuration”</a> portion of the Cryogen documentation site.</p>
+<h3 id="switching-between-markdown-and-asciidoc">Switching between Markdown and AsciiDoc</h3>
+<p>Cryogen comes with Markdown support as default. If you want to use AsciiDoc instead, open the <code>project.clj</code> in your created blog (e.g. <code>my-blog</code>), and change the line in <code>:dependencies</code> that says <code>cryogen-markdown</code> to <code>cryogen-asciidoc</code>. Instead of looking for files ending in <code>.md</code> in the <code>content/md</code> directory, the compiler will now look for files ending in <code>.asc</code> in the <code>content/asc</code> directory.</p>
+<h3 id="selecting-a-theme">Selecting a Theme</h3>
+<p>The Cryogen template comes with three themes in the <code>themes</code> folder. To change your blog’s theme, change the value of the <code>:theme</code> key in <code>config.edn</code>. Note that the Nucleus theme is obtained from <a href="http://www.downloadwebsitetemplates.co.uk/template/nucleus/">downloadwebsitetemplates.co.uk</a> that requires you to keep the footer, unless you make a donation on their website.</p>
+<h3 id="customizing-layouts">Customizing Layouts</h3>
+<p>Cryogen uses <a href="https://github.com/yogthos/Selmer">Selmer</a> templating engine for layouts. Please refer to its documentation to see the supported tags and filters for the layouts.</p>
+<p>The layouts are contained in the <code>themes/{theme}/html</code> folder of the project. By default, the <code>base.html</code> layout is used to provide the general layout for the site. This is where you would add static resources such as CSS and JavaScript assets as well as define headers and footers for your site.</p>
+<p>Each page layout should have a name that matches the <code>:layout</code> key in the page metadata and end with <code>.html</code>. Page layouts extend the base layout and should only contain the content relaveant to the page inside the <code>content</code> block. For example, the <code>tag</code> layout is located in <code>tag.html</code> and looks as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1"></a>{% extends &quot;/html/base.html&quot; %}</span>
+<span id="cb5-2"><a href="#cb5-2"></a>{% block content %}</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;posts-by-tag&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">&lt;h2&gt;</span>Posts tagged {{name}}<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="kw">&lt;ul&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    {% for post in posts %}</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="kw">&lt;li&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>            <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{post.uri}}&quot;</span><span class="kw">&gt;</span>{{post.title}}<span class="kw">&lt;/a&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="kw">&lt;/li&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    {% endfor %}</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="kw">&lt;/ul&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>{% endblock %}</span></code></pre></div>
+<h3 id="code-syntax-highlighting">Code Syntax Highlighting</h3>
+<p>Cryogen uses <a href="https://highlightjs.org/">Highlight.js</a> for code syntax highlighting. You can add more languages by replacing <code>themes/{theme}/js/highlight.pack.js</code> with a customized package from <a href="https://highlightjs.org/download/">here</a>.</p>
+<p>The <code>initHighlightingOnLoad</code> function is called in <code>themes/{theme}/html/base.html</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">&lt;script&gt;</span>hljs.initHighlightingOnLoad();<span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<h2 id="deploying-your-site">Deploying Your Site</h2>
+<p>The generated static content will be found under the <code>public</code> folder. Simply copy the content to a static folder for a server such as Nginx or Apache and your site is now ready for service.</p>
+<p>A sample Nginx configuration that’s placed in <code>/etc/nginx/sites-available/default</code> can be seen below:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a>server <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  listen <span class="dv">80</span> default_server<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  listen [<span class="op">::</span>]<span class="op">:</span><span class="dv">80</span> default_server ipv6only<span class="op">=</span>on<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  server_name localhost <span class="op">&lt;</span><span class="va">yoursite</span>.<span class="at">com</span><span class="op">&gt;</span> <span class="op">&lt;</span><span class="va">www</span>.<span class="va">yoursite</span>.<span class="at">com</span><span class="op">&gt;;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  access_log  <span class="op">/</span><span class="kw">var</span><span class="ss">/log/blog_access</span>.<span class="at">log</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  error_log   <span class="op">/</span><span class="kw">var</span><span class="ss">/log/blog_error</span>.<span class="at">log</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  location <span class="op">/</span> <span class="op">{</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    alias       <span class="op">/</span><span class="kw">var</span><span class="ss">/blog/</span><span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    error_page  <span class="dv">404</span> <span class="op">=</span> <span class="ss">/404.html;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="ss">  }</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="ss">}</span></span></code></pre></div>
+<p>Simply set <code>yoursite.com</code> to the domain of your site in the above configuration and ensure the static content is available at <code>/var/blog/</code>. Finally, place your custom error page in the <code>/var/blog/404.html</code> file.</p>
+<p>More information on deployment can be found <a href="http://cryogenweb.org/docs/deploying-to-github-pages.html">here</a>.</p>
+<h2 id="third-party-libraries">Third Party Libraries</h2>
+<h4 id="httpsgithub.comgreywolvecryogen-markdown-external">https://github.com/greywolve/cryogen-markdown-external</h4>
+<p>A Clojure library to provide Markdown rendering to the cryogen-core compiler by using an external command/program, such as pandoc.</p>
+<h2 id="some-sites-made-with-cryogen">Some Sites Made With Cryogen</h2>
+<ul>
+<li><a href="http://carmen.la/blog/archives">My personal blog</a></li>
+<li><a href="http://cryogenweb.org">Cryogen Documentation Site</a></li>
+<li><a href="http://yogthos.net/">Yogthos’ blog</a></li>
+<li><a href="http://www.chadstovern.com">Chad Stovern’s blog</a></li>
+<li><a href="http://www.szcz.org/">szcz</a></li>
+<li><a href="https://blog.isvit.info">ISvit blog</a></li>
+<li><a href="http://lambdafunk.com">Lambda Funk</a></li>
+<li><a href="https://ddft.wiki">DDFT.wiki</a></li>
+</ul>
 
-  access&#95;log  /var/log/blog&#95;access.log;
-  error&#95;log   /var/log/blog&#95;error.log;
-
-  location / {
-    alias       /var/blog/;
-    error&#95;page  404 = /404.html;
-  }
-}
-</code></pre><p>Simply set <code>yoursite.com</code> to the domain of your site in the above configuration and ensure the static content is available at <code>/var/blog/</code>. Finally, place your custom error page in the <code>/var/blog/404.html</code> file.</p><p>More information on deployment can be found <a href='http://cryogenweb.org/docs/deploying-to-github-pages.html'>here</a>.</p><h2 id="third&#95;party&#95;libraries">Third Party Libraries</h2><h4 id="https://github.com/greywolve/cryogen-markdown-external">https://github.com/greywolve/cryogen-markdown-external</h4><p>A Clojure library to provide Markdown rendering to the cryogen-core compiler by using an external command/program, such as pandoc.</p><h2 id="some&#95;sites&#95;made&#95;with&#95;cryogen">Some Sites Made With Cryogen</h2><ul><li><a href='http://carmen.la/blog/archives'>My personal blog</a></li><li><a href='http://cryogenweb.org'>Cryogen Documentation Site</a></li><li><a href='http://yogthos.net/'>Yogthos' blog</a></li><li><a href='http://www.chadstovern.com'>Chad Stovern's blog</a></li><li><a href='http://www.szcz.org/'>szcz</a></li><li><a href='https://blog.isvit.info'>ISvit blog</a></li><li><a href='http://lambdafunk.com'>Lambda Funk</a></li><li><a href='https://ddft.wiki'>DDFT.wiki</a></li></ul>
 </div>
 
 <div id="post-tags">
@@ -166,8 +222,8 @@
             <div id="sidebar">
                 <h3>Links</h3>
                 <ul id="links">
-                    <li><a href="http://cryogenweb.org/docs/home.html">Cryogen Docs</a></li>
-                    <li><a href="https://carmen.la/blog/archives/">Carmen's Blog</a></li>
+                    
+                    <li><a href="/pages-output/cv/">Curriculum</a></li>
                     
                 </ul>
                 

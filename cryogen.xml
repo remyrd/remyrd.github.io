@@ -1,65 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="https://remy.rojas.cz" rel="self" type="application/rss+xml"/><title>Remy Rojas</title><link>https://remy.rojas.cz</link><description></description><lastBuildDate>Mon, 16 Dec 2019 23:01:11 +0000</lastBuildDate><generator>clj-rss</generator><item><guid>https://remy.rojas.cz/posts-output/2016-01-07-docs/</guid><link>https://remy.rojas.cz/posts-output/2016-01-07-docs/</link><title>Quick Start Guide</title><description>&lt;p&gt;This intro only documents a subset of Cryogen's features. For additional documentation please see the &lt;a href='http://cryogenweb.org'&gt;cryogen site&lt;/a&gt;.&lt;/p&gt;&lt;h2 id="features"&gt;Features&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Blog posts and pages with Markdown (default) or AsciiDoc&lt;/li&gt;&lt;li&gt;Tags&lt;/li&gt;&lt;li&gt;Table of contents generation&lt;/li&gt;&lt;li&gt;Plain HTML page templates&lt;/li&gt;&lt;li&gt;Code syntax highlighting&lt;/li&gt;&lt;li&gt;Disqus support&lt;/li&gt;&lt;li&gt;Sitemap generation&lt;/li&gt;&lt;li&gt;RSS feed generation&lt;/li&gt;&lt;li&gt;Sass/SCSS compilation&lt;/li&gt;&lt;li&gt;Klipse Integration&lt;/li&gt;&lt;/ul&gt;&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;&lt;p&gt;You will need &lt;a href='https://github.com/technomancy/leiningen'&gt;Leiningen&lt;/a&gt; 2.5.0 or above installed.&lt;/p&gt;&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;&lt;h3 id="creating&amp;#95;a&amp;#95;new&amp;#95;site"&gt;Creating a New Site&lt;/h3&gt;&lt;p&gt;A new site can be created using the Cryogen template as follows:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein new cryogen my-blog
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="running&amp;#95;the&amp;#95;server"&gt;Running the Server&lt;/h3&gt;&lt;p&gt;The web server can be started from the &lt;code&gt;my-blog&lt;/code&gt; directory using the &lt;code&gt;lein-ring&lt;/code&gt; plugin:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein ring server
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The server will watch for changes in the &lt;code&gt;content&lt;/code&gt; and &lt;code&gt;themes&lt;/code&gt; folders and recompile the content automatically.&lt;/p&gt;&lt;p&gt;You can also generate the content without bringing up a server via:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;lein run
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="site&amp;#95;configuration"&gt;Site Configuration&lt;/h3&gt;&lt;p&gt;The site configuration file is found at &lt;code&gt;content/config.edn&lt;/code&gt;, this file looks as follows:&lt;/p&gt;&lt;pre&gt;&lt;code class="clojure"&gt;{:site-title                   &amp;quot;My Awesome Blog&amp;quot;
- :author                       &amp;quot;Bob Bobbert&amp;quot;
- :description                  &amp;quot;This blog is awesome&amp;quot;
- :site-url                     &amp;quot;http://blogawesome.com/&amp;quot;
- :post-root                    &amp;quot;posts&amp;quot;
- :page-root                    &amp;quot;pages&amp;quot;
- :post-root-uri                &amp;quot;posts-output&amp;quot;
- :page-root-uri                &amp;quot;pages-output&amp;quot;
- :tag-root-uri                 &amp;quot;tags-output&amp;quot;
- :author-root-uri              &amp;quot;authors-output&amp;quot;
- :public-dest                  &amp;quot;public&amp;quot;
- :blog-prefix                  &amp;quot;/blog&amp;quot;
- :rss-name                     &amp;quot;feed.xml&amp;quot;
- :rss-filters                  &amp;#91;&amp;quot;cryogen&amp;quot;&amp;#93;
- :recent-posts                 3
- :post-date-format             &amp;quot;yyyy-MM-dd&amp;quot;
- :archive-group-format         &amp;quot;yyyy MMMM&amp;quot;
- :sass-src                     &amp;#91;&amp;#93;
- :sass-path                    &amp;quot;sass&amp;quot;
- :theme                        &amp;quot;blue&amp;quot;
- :resources                    &amp;#91;&amp;quot;img&amp;quot;&amp;#93;
- :keep-files                   &amp;#91;&amp;quot;.git&amp;quot;&amp;#93;
- :disqus?                      false
- :disqus-shortname             &amp;quot;&amp;quot;
- :ignored-files                &amp;#91;#&amp;quot;\.#.&amp;#42;&amp;quot; #&amp;quot;.&amp;#42;\.swp$&amp;quot;&amp;#93;
- :previews?                    false
- :posts-per-page               5
- :blocks-per-preview           2
- :clean-urls                   :trailing-slash
- :collapse-subdirs?            false
- :hide-future-posts?           true
- :klipse                       {}
- :description-include-elements #{:p :h1 :h2 :h3 :h4 :h5 :h6}
- :debug?                       false}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For information about each key please see the &lt;a href='http://cryogenweb.org/docs/configuration.html'&gt;"Configuration"&lt;/a&gt; portion of the Cryogen documentation site.&lt;/p&gt;&lt;h3 id="switching&amp;#95;between&amp;#95;markdown&amp;#95;and&amp;#95;asciidoc"&gt;Switching between Markdown and AsciiDoc&lt;/h3&gt;&lt;p&gt;Cryogen comes with Markdown support as default. If you want to use AsciiDoc instead, open the &lt;code&gt;project.clj&lt;/code&gt; in your created blog (e.g. &lt;code&gt;my-blog&lt;/code&gt;), and change the line in &lt;code&gt;:dependencies&lt;/code&gt; that says &lt;code&gt;cryogen-markdown&lt;/code&gt; to &lt;code&gt;cryogen-asciidoc&lt;/code&gt;. Instead of looking for files ending in &lt;code&gt;.md&lt;/code&gt; in the &lt;code&gt;content/md&lt;/code&gt; directory, the compiler will now look for files ending in &lt;code&gt;.asc&lt;/code&gt; in the &lt;code&gt;content/asc&lt;/code&gt; directory.&lt;/p&gt;&lt;h3 id="selecting&amp;#95;a&amp;#95;theme"&gt;Selecting a Theme&lt;/h3&gt;&lt;p&gt;The Cryogen template comes with three themes in the &lt;code&gt;themes&lt;/code&gt; folder. To change your blog's theme, change the value of the &lt;code&gt;:theme&lt;/code&gt; key in &lt;code&gt;config.edn&lt;/code&gt;. Note that the Nucleus theme is obtained from &lt;a href='http://www.downloadwebsitetemplates.co.uk/template/nucleus/'&gt;downloadwebsitetemplates.co.uk&lt;/a&gt; that requires you to keep the footer, unless you make a donation on their website.&lt;/p&gt;&lt;h3 id="customizing&amp;#95;layouts"&gt;Customizing Layouts&lt;/h3&gt;&lt;p&gt;Cryogen uses &lt;a href='https://github.com/yogthos/Selmer'&gt;Selmer&lt;/a&gt; templating engine for layouts. Please refer to its documentation to see the supported tags and filters for the layouts.&lt;/p&gt;&lt;p&gt;The layouts are contained in the &lt;code&gt;themes/{theme}/html&lt;/code&gt; folder of the project. By default, the &lt;code&gt;base.html&lt;/code&gt; layout is used to provide the general layout for the site. This is where you would add static resources such as CSS and JavaScript assets as well as define headers and footers for your site.&lt;/p&gt;&lt;p&gt;Each page layout should have a name that matches the &lt;code&gt;:layout&lt;/code&gt; key in the page metadata and end with &lt;code&gt;.html&lt;/code&gt;. Page layouts extend the base layout and should only contain the content relaveant to the page inside the &lt;code&gt;content&lt;/code&gt; block. For example, the &lt;code&gt;tag&lt;/code&gt; layout is located in &lt;code&gt;tag.html&lt;/code&gt; and looks as follows:&lt;/p&gt;&lt;pre&gt;&lt;code class="xml"&gt;{% extends &amp;quot;/html/base.html&amp;quot; %}
-{% block content %}
-&amp;lt;div id=&amp;quot;posts-by-tag&amp;quot;&amp;gt;
-    &amp;lt;h2&amp;gt;Posts tagged {{name}}&amp;lt;/h2&amp;gt;
-    &amp;lt;ul&amp;gt;
-    {% for post in posts %}
-        &amp;lt;li&amp;gt;
-            &amp;lt;a href=&amp;quot;{{post.uri}}&amp;quot;&amp;gt;{{post.title}}&amp;lt;/a&amp;gt;
-        &amp;lt;/li&amp;gt;
-    {% endfor %}
-    &amp;lt;/ul&amp;gt;
-&amp;lt;/div&amp;gt;
-{% endblock %}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="code&amp;#95;syntax&amp;#95;highlighting"&gt;Code Syntax Highlighting&lt;/h3&gt;&lt;p&gt;Cryogen uses &lt;a href='https://highlightjs.org/'&gt;Highlight.js&lt;/a&gt; for code syntax highlighting. You can add more languages by replacing &lt;code&gt;themes/{theme}/js/highlight.pack.js&lt;/code&gt; with a customized package from &lt;a href='https://highlightjs.org/download/'&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;The &lt;code&gt; initHighlightingOnLoad&lt;/code&gt; function is called in &lt;code&gt;themes/{theme}/html/base.html&lt;/code&gt;.&lt;/p&gt;&lt;pre&gt;&lt;code class="xml"&gt;&amp;lt;script&amp;gt;hljs.initHighlightingOnLoad&amp;#40;&amp;#41;;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="deploying&amp;#95;your&amp;#95;site"&gt;Deploying Your Site&lt;/h2&gt;&lt;p&gt;The generated static content will be found under the &lt;code&gt;public&lt;/code&gt; folder. Simply copy the content to a static folder for a server such as Nginx or Apache and your site is now ready for service.&lt;/p&gt;&lt;p&gt;A sample Nginx configuration that's placed in &lt;code&gt;/etc/nginx/sites-available/default&lt;/code&gt; can be seen below:&lt;/p&gt;&lt;pre&gt;&lt;code class="javascript"&gt;server {
-  listen 80 default&amp;#95;server;
-  listen &amp;#91;::&amp;#93;:80 default&amp;#95;server ipv6only=on;
-  server&amp;#95;name localhost &amp;lt;yoursite.com&amp;gt; &amp;lt;www.yoursite.com&amp;gt;;
-
-  access&amp;#95;log  /var/log/blog&amp;#95;access.log;
-  error&amp;#95;log   /var/log/blog&amp;#95;error.log;
-
-  location / {
-    alias       /var/blog/;
-    error&amp;#95;page  404 = /404.html;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Simply set &lt;code&gt;yoursite.com&lt;/code&gt; to the domain of your site in the above configuration and ensure the static content is available at &lt;code&gt;/var/blog/&lt;/code&gt;. Finally, place your custom error page in the &lt;code&gt;/var/blog/404.html&lt;/code&gt; file.&lt;/p&gt;&lt;p&gt;More information on deployment can be found &lt;a href='http://cryogenweb.org/docs/deploying-to-github-pages.html'&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;h2 id="third&amp;#95;party&amp;#95;libraries"&gt;Third Party Libraries&lt;/h2&gt;&lt;h4 id="https://github.com/greywolve/cryogen-markdown-external"&gt;https://github.com/greywolve/cryogen-markdown-external&lt;/h4&gt;&lt;p&gt;A Clojure library to provide Markdown rendering to the cryogen-core compiler by using an external command/program, such as pandoc.&lt;/p&gt;&lt;h2 id="some&amp;#95;sites&amp;#95;made&amp;#95;with&amp;#95;cryogen"&gt;Some Sites Made With Cryogen&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='http://carmen.la/blog/archives'&gt;My personal blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://cryogenweb.org'&gt;Cryogen Documentation Site&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://yogthos.net/'&gt;Yogthos' blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://www.chadstovern.com'&gt;Chad Stovern's blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://www.szcz.org/'&gt;szcz&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='https://blog.isvit.info'&gt;ISvit blog&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='http://lambdafunk.com'&gt;Lambda Funk&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='https://ddft.wiki'&gt;DDFT.wiki&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</description><pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate></item></channel></rss>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><atom:link href="https://remy.rojas.cz" rel="self" type="application/rss+xml"/><title>Remy Rojas</title><link>https://remy.rojas.cz</link><description></description><lastBuildDate>Tue, 17 Dec 2019 12:16:46 +0000</lastBuildDate><generator>clj-rss</generator><item><guid>https://remy.rojas.cz/posts-output/2016-01-07-docs/</guid><link>https://remy.rojas.cz/posts-output/2016-01-07-docs/</link><title>Quick Start Guide</title><description>&lt;p&gt;This intro only documents a subset of Cryogen’s features. For additional documentation please see the &lt;a href="http://cryogenweb.org"&gt;cryogen site&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Blog posts and pages with Markdown (default) or AsciiDoc&lt;/li&gt;
+&lt;li&gt;Tags&lt;/li&gt;
+&lt;li&gt;Table of contents generation&lt;/li&gt;
+&lt;li&gt;Plain HTML page templates&lt;/li&gt;
+&lt;li&gt;Code syntax highlighting&lt;/li&gt;
+&lt;li&gt;Disqus support&lt;/li&gt;
+&lt;li&gt;Sitemap generation&lt;/li&gt;
+&lt;li&gt;RSS feed generation&lt;/li&gt;
+&lt;li&gt;Sass/SCSS compilation&lt;/li&gt;
+&lt;li&gt;Klipse Integration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;You will need &lt;a href="https://github.com/technomancy/leiningen"&gt;Leiningen&lt;/a&gt; 2.5.0 or above installed.&lt;/p&gt;
+&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+&lt;h3 id="creating-a-new-site"&gt;Creating a New Site&lt;/h3&gt;
+&lt;p&gt;A new site can be created using the Cryogen template as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lein new cryogen my-blog&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="running-the-server"&gt;Running the Server&lt;/h3&gt;
+&lt;p&gt;The web server can be started from the &lt;code&gt;my-blog&lt;/code&gt; directory using the &lt;code&gt;lein-ring&lt;/code&gt; plugin:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lein ring server&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The server will watch for changes in the &lt;code&gt;content&lt;/code&gt; and &lt;code&gt;themes&lt;/code&gt; folders and recompile the content automatically.&lt;/p&gt;
+&lt;p&gt;You can also generate the content without bringing up a server via:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lein run&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="site-configuration"&gt;Site Configuration&lt;/h3&gt;
+&lt;p&gt;The site configuration file is found at &lt;code&gt;content/config.edn&lt;/code&gt;, this file looks as follows:&lt;/p&gt;
+&lt;div class="sourceCode" id="cb4"&gt;&lt;pre class="sourceCode clojure"&gt;&lt;code class="sourceCode clojure"&gt;&lt;span id="cb4-1"&gt;&lt;a href="#cb4-1"&gt;&lt;/a&gt;{&lt;span class="at"&gt;:site-title&lt;/span&gt;                   &lt;span class="st"&gt;&amp;quot;My Awesome Blog&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-2"&gt;&lt;a href="#cb4-2"&gt;&lt;/a&gt; &lt;span class="at"&gt;:author&lt;/span&gt;                       &lt;span class="st"&gt;&amp;quot;Bob Bobbert&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-3"&gt;&lt;a href="#cb4-3"&gt;&lt;/a&gt; &lt;span class="at"&gt;:description&lt;/span&gt;                  &lt;span class="st"&gt;&amp;quot;This blog is awesome&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-4"&gt;&lt;a href="#cb4-4"&gt;&lt;/a&gt; &lt;span class="at"&gt;:site-url&lt;/span&gt;                     &lt;span class="st"&gt;&amp;quot;http://blogawesome.com/&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-5"&gt;&lt;a href="#cb4-5"&gt;&lt;/a&gt; &lt;span class="at"&gt;:post-root&lt;/span&gt;                    &lt;span class="st"&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-6"&gt;&lt;a href="#cb4-6"&gt;&lt;/a&gt; &lt;span class="at"&gt;:page-root&lt;/span&gt;                    &lt;span class="st"&gt;&amp;quot;pages&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-7"&gt;&lt;a href="#cb4-7"&gt;&lt;/a&gt; &lt;span class="at"&gt;:post-root-uri&lt;/span&gt;                &lt;span class="st"&gt;&amp;quot;posts-output&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-8"&gt;&lt;a href="#cb4-8"&gt;&lt;/a&gt; &lt;span class="at"&gt;:page-root-uri&lt;/span&gt;                &lt;span class="st"&gt;&amp;quot;pages-output&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-9"&gt;&lt;a href="#cb4-9"&gt;&lt;/a&gt; &lt;span class="at"&gt;:tag-root-uri&lt;/span&gt;                 &lt;span class="st"&gt;&amp;quot;tags-output&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-10"&gt;&lt;a href="#cb4-10"&gt;&lt;/a&gt; &lt;span class="at"&gt;:author-root-uri&lt;/span&gt;              &lt;span class="st"&gt;&amp;quot;authors-output&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-11"&gt;&lt;a href="#cb4-11"&gt;&lt;/a&gt; &lt;span class="at"&gt;:public-dest&lt;/span&gt;                  &lt;span class="st"&gt;&amp;quot;public&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-12"&gt;&lt;a href="#cb4-12"&gt;&lt;/a&gt; &lt;span class="at"&gt;:blog-prefix&lt;/span&gt;                  &lt;span class="st"&gt;&amp;quot;/blog&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-13"&gt;&lt;a href="#cb4-13"&gt;&lt;/a&gt; &lt;span class="at"&gt;:rss-name&lt;/span&gt;                     &lt;span class="st"&gt;&amp;quot;feed.xml&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-14"&gt;&lt;a href="#cb4-14"&gt;&lt;/a&gt; &lt;span class="at"&gt;:rss-filters&lt;/span&gt;                  [&lt;span class="st"&gt;&amp;quot;cryogen&amp;quot;&lt;/span&gt;]&lt;/span&gt;
+&lt;span id="cb4-15"&gt;&lt;a href="#cb4-15"&gt;&lt;/a&gt; &lt;span class="at"&gt;:recent-posts&lt;/span&gt;                 &lt;span class="dv"&gt;3&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-16"&gt;&lt;a href="#cb4-16"&gt;&lt;/a&gt; &lt;span class="at"&gt;:post-date-format&lt;/span&gt;             &lt;span class="st"&gt;&amp;quot;yyyy-MM-dd&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-17"&gt;&lt;a href="#cb4-17"&gt;&lt;/a&gt; &lt;span class="at"&gt;:archive-group-format&lt;/span&gt;         &lt;span class="st"&gt;&amp;quot;yyyy MMMM&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-18"&gt;&lt;a href="#cb4-18"&gt;&lt;/a&gt; &lt;span class="at"&gt;:sass-src&lt;/span&gt;                     []&lt;/span&gt;
+&lt;span id="cb4-19"&gt;&lt;a href="#cb4-19"&gt;&lt;/a&gt; &lt;span class="at"&gt;:sass-path&lt;/span&gt;                    &lt;span class="st"&gt;&amp;quot;sass&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-20"&gt;&lt;a href="#cb4-20"&gt;&lt;/a&gt; &lt;span class="at"&gt;:theme&lt;/span&gt;                        &lt;span class="st"&gt;&amp;quot;blue&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-21"&gt;&lt;a href="#cb4-21"&gt;&lt;/a&gt; &lt;span class="at"&gt;:resources&lt;/span&gt;                    [&lt;span class="st"&gt;&amp;quot;img&amp;quot;&lt;/span&gt;]&lt;/span&gt;
+&lt;span id="cb4-22"&gt;&lt;a href="#cb4-22"&gt;&lt;/a&gt; &lt;span class="at"&gt;:keep-files&lt;/span&gt;                   [&lt;span class="st"&gt;&amp;quot;.git&amp;quot;&lt;/span&gt;]&lt;/span&gt;
+&lt;span id="cb4-23"&gt;&lt;a href="#cb4-23"&gt;&lt;/a&gt; &lt;span class="at"&gt;:disqus&lt;/span&gt;?                      &lt;span class="va"&gt;false&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-24"&gt;&lt;a href="#cb4-24"&gt;&lt;/a&gt; &lt;span class="at"&gt;:disqus-shortname&lt;/span&gt;             &lt;span class="st"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-25"&gt;&lt;a href="#cb4-25"&gt;&lt;/a&gt; &lt;span class="at"&gt;:ignored-files&lt;/span&gt;                [&lt;span class="ss"&gt;#&amp;quot;\.#.*&amp;quot;&lt;/span&gt; &lt;span class="ss"&gt;#&amp;quot;.*\.swp$&amp;quot;&lt;/span&gt;]&lt;/span&gt;
+&lt;span id="cb4-26"&gt;&lt;a href="#cb4-26"&gt;&lt;/a&gt; &lt;span class="at"&gt;:previews&lt;/span&gt;?                    &lt;span class="va"&gt;false&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-27"&gt;&lt;a href="#cb4-27"&gt;&lt;/a&gt; &lt;span class="at"&gt;:posts-per-page&lt;/span&gt;               &lt;span class="dv"&gt;5&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-28"&gt;&lt;a href="#cb4-28"&gt;&lt;/a&gt; &lt;span class="at"&gt;:blocks-per-preview&lt;/span&gt;           &lt;span class="dv"&gt;2&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-29"&gt;&lt;a href="#cb4-29"&gt;&lt;/a&gt; &lt;span class="at"&gt;:clean-urls&lt;/span&gt;                   &lt;span class="at"&gt;:trailing-slash&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-30"&gt;&lt;a href="#cb4-30"&gt;&lt;/a&gt; &lt;span class="at"&gt;:collapse-subdirs&lt;/span&gt;?            &lt;span class="va"&gt;false&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-31"&gt;&lt;a href="#cb4-31"&gt;&lt;/a&gt; &lt;span class="at"&gt;:hide-future-posts&lt;/span&gt;?           &lt;span class="va"&gt;true&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb4-32"&gt;&lt;a href="#cb4-32"&gt;&lt;/a&gt; &lt;span class="at"&gt;:klipse&lt;/span&gt;                       {}&lt;/span&gt;
+&lt;span id="cb4-33"&gt;&lt;a href="#cb4-33"&gt;&lt;/a&gt; &lt;span class="at"&gt;:description-include-elements&lt;/span&gt; #{&lt;span class="at"&gt;:p&lt;/span&gt; &lt;span class="at"&gt;:h1&lt;/span&gt; &lt;span class="at"&gt;:h2&lt;/span&gt; &lt;span class="at"&gt;:h3&lt;/span&gt; &lt;span class="at"&gt;:h4&lt;/span&gt; &lt;span class="at"&gt;:h5&lt;/span&gt; &lt;span class="at"&gt;:h6&lt;/span&gt;}&lt;/span&gt;
+&lt;span id="cb4-34"&gt;&lt;a href="#cb4-34"&gt;&lt;/a&gt; &lt;span class="at"&gt;:debug&lt;/span&gt;?                       &lt;span class="va"&gt;false&lt;/span&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For information about each key please see the &lt;a href="http://cryogenweb.org/docs/configuration.html"&gt;“Configuration”&lt;/a&gt; portion of the Cryogen documentation site.&lt;/p&gt;
+&lt;h3 id="switching-between-markdown-and-asciidoc"&gt;Switching between Markdown and AsciiDoc&lt;/h3&gt;
+&lt;p&gt;Cryogen comes with Markdown support as default. If you want to use AsciiDoc instead, open the &lt;code&gt;project.clj&lt;/code&gt; in your created blog (e.g. &lt;code&gt;my-blog&lt;/code&gt;), and change the line in &lt;code&gt;:dependencies&lt;/code&gt; that says &lt;code&gt;cryogen-markdown&lt;/code&gt; to &lt;code&gt;cryogen-asciidoc&lt;/code&gt;. Instead of looking for files ending in &lt;code&gt;.md&lt;/code&gt; in the &lt;code&gt;content/md&lt;/code&gt; directory, the compiler will now look for files ending in &lt;code&gt;.asc&lt;/code&gt; in the &lt;code&gt;content/asc&lt;/code&gt; directory.&lt;/p&gt;
+&lt;h3 id="selecting-a-theme"&gt;Selecting a Theme&lt;/h3&gt;
+&lt;p&gt;The Cryogen template comes with three themes in the &lt;code&gt;themes&lt;/code&gt; folder. To change your blog’s theme, change the value of the &lt;code&gt;:theme&lt;/code&gt; key in &lt;code&gt;config.edn&lt;/code&gt;. Note that the Nucleus theme is obtained from &lt;a href="http://www.downloadwebsitetemplates.co.uk/template/nucleus/"&gt;downloadwebsitetemplates.co.uk&lt;/a&gt; that requires you to keep the footer, unless you make a donation on their website.&lt;/p&gt;
+&lt;h3 id="customizing-layouts"&gt;Customizing Layouts&lt;/h3&gt;
+&lt;p&gt;Cryogen uses &lt;a href="https://github.com/yogthos/Selmer"&gt;Selmer&lt;/a&gt; templating engine for layouts. Please refer to its documentation to see the supported tags and filters for the layouts.&lt;/p&gt;
+&lt;p&gt;The layouts are contained in the &lt;code&gt;themes/{theme}/html&lt;/code&gt; folder of the project. By default, the &lt;code&gt;base.html&lt;/code&gt; layout is used to provide the general layout for the site. This is where you would add static resources such as CSS and JavaScript assets as well as define headers and footers for your site.&lt;/p&gt;
+&lt;p&gt;Each page layout should have a name that matches the &lt;code&gt;:layout&lt;/code&gt; key in the page metadata and end with &lt;code&gt;.html&lt;/code&gt;. Page layouts extend the base layout and should only contain the content relaveant to the page inside the &lt;code&gt;content&lt;/code&gt; block. For example, the &lt;code&gt;tag&lt;/code&gt; layout is located in &lt;code&gt;tag.html&lt;/code&gt; and looks as follows:&lt;/p&gt;
+&lt;div class="sourceCode" id="cb5"&gt;&lt;pre class="sourceCode xml"&gt;&lt;code class="sourceCode xml"&gt;&lt;span id="cb5-1"&gt;&lt;a href="#cb5-1"&gt;&lt;/a&gt;{% extends &amp;quot;/html/base.html&amp;quot; %}&lt;/span&gt;
+&lt;span id="cb5-2"&gt;&lt;a href="#cb5-2"&gt;&lt;/a&gt;{% block content %}&lt;/span&gt;
+&lt;span id="cb5-3"&gt;&lt;a href="#cb5-3"&gt;&lt;/a&gt;&lt;span class="kw"&gt;&amp;lt;div&lt;/span&gt;&lt;span class="ot"&gt; id=&lt;/span&gt;&lt;span class="st"&gt;&amp;quot;posts-by-tag&amp;quot;&lt;/span&gt;&lt;span class="kw"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-4"&gt;&lt;a href="#cb5-4"&gt;&lt;/a&gt;    &lt;span class="kw"&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Posts tagged {{name}}&lt;span class="kw"&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-5"&gt;&lt;a href="#cb5-5"&gt;&lt;/a&gt;    &lt;span class="kw"&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-6"&gt;&lt;a href="#cb5-6"&gt;&lt;/a&gt;    {% for post in posts %}&lt;/span&gt;
+&lt;span id="cb5-7"&gt;&lt;a href="#cb5-7"&gt;&lt;/a&gt;        &lt;span class="kw"&gt;&amp;lt;li&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-8"&gt;&lt;a href="#cb5-8"&gt;&lt;/a&gt;            &lt;span class="kw"&gt;&amp;lt;a&lt;/span&gt;&lt;span class="ot"&gt; href=&lt;/span&gt;&lt;span class="st"&gt;&amp;quot;{{post.uri}}&amp;quot;&lt;/span&gt;&lt;span class="kw"&gt;&amp;gt;&lt;/span&gt;{{post.title}}&lt;span class="kw"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-9"&gt;&lt;a href="#cb5-9"&gt;&lt;/a&gt;        &lt;span class="kw"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-10"&gt;&lt;a href="#cb5-10"&gt;&lt;/a&gt;    {% endfor %}&lt;/span&gt;
+&lt;span id="cb5-11"&gt;&lt;a href="#cb5-11"&gt;&lt;/a&gt;    &lt;span class="kw"&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-12"&gt;&lt;a href="#cb5-12"&gt;&lt;/a&gt;&lt;span class="kw"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb5-13"&gt;&lt;a href="#cb5-13"&gt;&lt;/a&gt;{% endblock %}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="code-syntax-highlighting"&gt;Code Syntax Highlighting&lt;/h3&gt;
+&lt;p&gt;Cryogen uses &lt;a href="https://highlightjs.org/"&gt;Highlight.js&lt;/a&gt; for code syntax highlighting. You can add more languages by replacing &lt;code&gt;themes/{theme}/js/highlight.pack.js&lt;/code&gt; with a customized package from &lt;a href="https://highlightjs.org/download/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;initHighlightingOnLoad&lt;/code&gt; function is called in &lt;code&gt;themes/{theme}/html/base.html&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="sourceCode" id="cb6"&gt;&lt;pre class="sourceCode xml"&gt;&lt;code class="sourceCode xml"&gt;&lt;span id="cb6-1"&gt;&lt;a href="#cb6-1"&gt;&lt;/a&gt;&lt;span class="kw"&gt;&amp;lt;script&amp;gt;&lt;/span&gt;hljs.initHighlightingOnLoad();&lt;span class="kw"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="deploying-your-site"&gt;Deploying Your Site&lt;/h2&gt;
+&lt;p&gt;The generated static content will be found under the &lt;code&gt;public&lt;/code&gt; folder. Simply copy the content to a static folder for a server such as Nginx or Apache and your site is now ready for service.&lt;/p&gt;
+&lt;p&gt;A sample Nginx configuration that’s placed in &lt;code&gt;/etc/nginx/sites-available/default&lt;/code&gt; can be seen below:&lt;/p&gt;
+&lt;div class="sourceCode" id="cb7"&gt;&lt;pre class="sourceCode javascript"&gt;&lt;code class="sourceCode javascript"&gt;&lt;span id="cb7-1"&gt;&lt;a href="#cb7-1"&gt;&lt;/a&gt;server &lt;span class="op"&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-2"&gt;&lt;a href="#cb7-2"&gt;&lt;/a&gt;  listen &lt;span class="dv"&gt;80&lt;/span&gt; default_server&lt;span class="op"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-3"&gt;&lt;a href="#cb7-3"&gt;&lt;/a&gt;  listen [&lt;span class="op"&gt;::&lt;/span&gt;]&lt;span class="op"&gt;:&lt;/span&gt;&lt;span class="dv"&gt;80&lt;/span&gt; default_server ipv6only&lt;span class="op"&gt;=&lt;/span&gt;on&lt;span class="op"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-4"&gt;&lt;a href="#cb7-4"&gt;&lt;/a&gt;  server_name localhost &lt;span class="op"&gt;&amp;lt;&lt;/span&gt;&lt;span class="va"&gt;yoursite&lt;/span&gt;.&lt;span class="at"&gt;com&lt;/span&gt;&lt;span class="op"&gt;&amp;gt;&lt;/span&gt; &lt;span class="op"&gt;&amp;lt;&lt;/span&gt;&lt;span class="va"&gt;www&lt;/span&gt;.&lt;span class="va"&gt;yoursite&lt;/span&gt;.&lt;span class="at"&gt;com&lt;/span&gt;&lt;span class="op"&gt;&amp;gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-5"&gt;&lt;a href="#cb7-5"&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id="cb7-6"&gt;&lt;a href="#cb7-6"&gt;&lt;/a&gt;  access_log  &lt;span class="op"&gt;/&lt;/span&gt;&lt;span class="kw"&gt;var&lt;/span&gt;&lt;span class="ss"&gt;/log/blog_access&lt;/span&gt;.&lt;span class="at"&gt;log&lt;/span&gt;&lt;span class="op"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-7"&gt;&lt;a href="#cb7-7"&gt;&lt;/a&gt;  error_log   &lt;span class="op"&gt;/&lt;/span&gt;&lt;span class="kw"&gt;var&lt;/span&gt;&lt;span class="ss"&gt;/log/blog_error&lt;/span&gt;.&lt;span class="at"&gt;log&lt;/span&gt;&lt;span class="op"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-8"&gt;&lt;a href="#cb7-8"&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span id="cb7-9"&gt;&lt;a href="#cb7-9"&gt;&lt;/a&gt;  location &lt;span class="op"&gt;/&lt;/span&gt; &lt;span class="op"&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-10"&gt;&lt;a href="#cb7-10"&gt;&lt;/a&gt;    alias       &lt;span class="op"&gt;/&lt;/span&gt;&lt;span class="kw"&gt;var&lt;/span&gt;&lt;span class="ss"&gt;/blog/&lt;/span&gt;&lt;span class="op"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-11"&gt;&lt;a href="#cb7-11"&gt;&lt;/a&gt;    error_page  &lt;span class="dv"&gt;404&lt;/span&gt; &lt;span class="op"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;/404.html;&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-12"&gt;&lt;a href="#cb7-12"&gt;&lt;/a&gt;&lt;span class="ss"&gt;  }&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb7-13"&gt;&lt;a href="#cb7-13"&gt;&lt;/a&gt;&lt;span class="ss"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Simply set &lt;code&gt;yoursite.com&lt;/code&gt; to the domain of your site in the above configuration and ensure the static content is available at &lt;code&gt;/var/blog/&lt;/code&gt;. Finally, place your custom error page in the &lt;code&gt;/var/blog/404.html&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;More information on deployment can be found &lt;a href="http://cryogenweb.org/docs/deploying-to-github-pages.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="third-party-libraries"&gt;Third Party Libraries&lt;/h2&gt;
+&lt;h4 id="httpsgithub.comgreywolvecryogen-markdown-external"&gt;https://github.com/greywolve/cryogen-markdown-external&lt;/h4&gt;
+&lt;p&gt;A Clojure library to provide Markdown rendering to the cryogen-core compiler by using an external command/program, such as pandoc.&lt;/p&gt;
+&lt;h2 id="some-sites-made-with-cryogen"&gt;Some Sites Made With Cryogen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://carmen.la/blog/archives"&gt;My personal blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cryogenweb.org"&gt;Cryogen Documentation Site&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://yogthos.net/"&gt;Yogthos’ blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.chadstovern.com"&gt;Chad Stovern’s blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.szcz.org/"&gt;szcz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.isvit.info"&gt;ISvit blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://lambdafunk.com"&gt;Lambda Funk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ddft.wiki"&gt;DDFT.wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate></item></channel></rss>
