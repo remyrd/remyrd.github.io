@@ -2,12 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Remy Rojas: About</title>
+    <title>remy.rojas: About</title>
     
-
-<meta name="description" content="Contact">
-
-<meta property="og:description" content="Contact">
 
 <meta property="og:url" content="https://remy.rojas.cz/pages-output/about/" />
 <meta property="og:title" content="About" />
@@ -15,11 +11,11 @@
 
     <link rel="canonical" href="https://remy.rojas.cz/pages-output/about/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700" rel="stylesheet"
-          type="text/css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/caladea" type="text/css"/> 
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/mono-blue.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Remy Rojas</a>
+            <a class="navbar-brand" href="/">remy.rojas</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -66,9 +62,17 @@
         <h2>About</h2>
     </div>
     
-    <h2 id="contact">Contact</h2>
-<p>Remy Rojas</p>
-<p>email: <code>remy[at]rojas[dot]cz</code></p>
+    <div class="sourceCode" id="cb1"><pre class="sourceCode clojure"><code class="sourceCode clojure"><span id="cb1-1"><a href="#cb1-1"></a>{ <span class="at">:name</span>      { <span class="at">:first</span> <span class="st">&quot;Remy&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>               <span class="at">:last</span>  <span class="st">&quot;Rojas&quot;</span> }</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">:stdio</span>     [<span class="st">&quot;Spanish&quot;</span> <span class="st">&quot;French&quot;</span> <span class="st">&quot;English&quot;</span>]</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">:non-stdio</span> [<span class="st">&quot;Slovak&quot;</span> <span class="st">&quot;Czech&quot;</span> <span class="st">&quot;German&quot;</span> <span class="st">&quot;Russian&quot;</span>]</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">:mail</span>      (<span class="kw">str</span> <span class="st">&quot;remy&quot;</span> (at) <span class="st">&quot;rojas&quot;</span> (dot) <span class="st">&quot;cz&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="at">:loc</span>       { <span class="at">:city</span>    <span class="st">&quot;Prague&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>               <span class="at">:country</span> <span class="st">&quot;Czech Republic&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>               <span class="at">:tz</span>      <span class="st">&quot;CEST&quot;</span> }</span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="at">:telegram</span>  <span class="st">&quot;@remyrd&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="at">:mastodon</span>  { <span class="at">:server</span> <span class="st">&quot;fosstodon.org&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>               <span class="at">:user</span>   <span class="st">&quot;remy&quot;</span> }}</span></code></pre></div>
 
 
     <div id="prev-next">
@@ -96,11 +100,20 @@
                     <h3>Recent Posts</h3>
                     <ul>
                         
-                        <li><a href="/posts-output/2019-12-16-hello-world/">How this came to be</a></li>
+                        <li><a href="/posts-output/2019-12-16-hello-world/">Sr.ht ex machina</a></li>
                         
                     </ul>
                 </div>
                 
+                
+                <div id="tags">
+                    <h3>Tags</h3>
+                    <ul>
+                        
+                        <li><a href="/tags-output/meta/">meta</a></li>
+                        
+                    </ul>
+                </div>
                 
             </div>
         </div>
@@ -108,8 +121,6 @@
     <footer>Copyright &copy; 2019 Remy Rojas
         <p style="text-align: center;">Powered by <a href="http://cryogenweb.org">Cryogen</a></p></footer>
 </div>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="/js/highlight.pack.js" type="text/javascript"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 

@@ -1,5 +1,5 @@
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Alegreya';
+    font-family: 'CaladeaBold';
 }
 
 body {
@@ -116,23 +116,23 @@ blockquote footer {
     font-size: 32px;
 }
 
-pre {
-    overflow-x: auto;
-}
-pre code {
-    display: block;
-    padding: 0.5em;
-    overflow-wrap: normal;
-    white-space: pre;
-}
+/* pre { */
+/*     overflow-x: auto; */
+/* } */
+/* pre code { */
+/*     display: block; */
+/*     padding: 0.5em; */
+/*     overflow-wrap: normal; */
+/*     white-space: pre; */
+/* } */
 
-code {
-    color: #428bca;
-}
+/* code { */
+/*     color: #428bca; */
+/* } */
 
-pre, code, .hljs {
-    background-color: #f7f9fd;
-}
+/* pre, code, .hljs { */
+/*     background-color: #f7f9fd; */
+/* } */
 
 @media (min-width: 768px) {
     .navbar {
