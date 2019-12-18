@@ -1,7 +1,3 @@
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'CaladeaBold';
-}
-
 body {
     color: #333;
     background-color: #f2f2f2;
@@ -115,24 +111,6 @@ blockquote footer {
 #page-header h2 {
     font-size: 32px;
 }
-
-/* pre { */
-/*     overflow-x: auto; */
-/* } */
-/* pre code { */
-/*     display: block; */
-/*     padding: 0.5em; */
-/*     overflow-wrap: normal; */
-/*     white-space: pre; */
-/* } */
-
-/* code { */
-/*     color: #428bca; */
-/* } */
-
-/* pre, code, .hljs { */
-/*     background-color: #f7f9fd; */
-/* } */
 
 @media (min-width: 768px) {
     .navbar {

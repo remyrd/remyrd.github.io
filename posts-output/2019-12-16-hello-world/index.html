@@ -16,7 +16,6 @@
 
     <link rel="canonical" href="https://remy.rojas.cz/posts-output/2019-12-16-hello-world/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/caladea" type="text/css"/> 
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -24,8 +23,6 @@
     <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -87,23 +84,30 @@
 <p>There were a couple requirements I had in mind, both from the toolset and maintainability perspectives.</p>
 <p>The site needed to be/have:</p>
 <ul>
-<li>Statically generated</li>
-<li>Markdown editing</li>
-<li>Written in Clojure</li>
+<li>Statically generated. We just need to download some HTML</li>
+<li>Markdown editing. Because I write MD all day</li>
+<li>Written in Clojure. Relevant to the next point</li>
 <li>Tweakable</li>
 </ul>
-<p>The workflow should be setup once. Thereafter:</p>
+<p>The maintainability aspect had a simple goal: I don't want to fiddle with deployments. If my house catches fire I want to still be able to write about it. At the same time, i don't want to maintain both the source and the generated website. Ideally, my workflow consists of:</p>
 <ul>
-<li>Write</li>
-<li>Commit</li>
-<li>Push</li>
+<li>Setup. <strong>ONCE</strong>. Never come back here.</li>
+<li>Write something and verify nothing breaks on <em>localhost</em></li>
+<li>Commit and Push the <strong>source</strong></li>
 <li>??</li>
 <li>Profit</li>
 </ul>
 <h3 id="static-site-generator">Static site generator</h3>
 <p>I soon figured <a href="https://cryogenweb.org"><strong>Cryogen</strong></a> was an ideal candidate meeting all the requirements. Besides setting up a custom markdown command to get tables compile the same way org-mode writes them, the experience was pretty much out-of-the-box.</p>
+<p>I took some time after getting the first version of the post out to get rid of a couple things. These have nothing to do with <em>Cryogen</em> itself but with its theme template.</p>
+<ul>
+<li>Goodbye Google (fonts). Not a fan of tracking. <code>Helvetica</code> is a nice default</li>
+<li>The only script running is <a href="https://highlightjs.org/"><code>highlightjs</code></a> in order to spice up code blocks</li>
+<li>All assets were downloaded and are served by the site</li>
+</ul>
+<p>These changes prevent the browser from reaching out elsewhere when loading the page.</p>
 <h3 id="automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</h3>
-<p>The compiled page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
+<p>The generated page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
 <p>The build script pulls both projects, builds the sources, copy/pastes the resulting page, and pushes to Github.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">packages</span><span class="kw">:</span></span>
@@ -131,7 +135,7 @@
 <span id="cb1-24"><a href="#cb1-24"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
 <span id="cb1-25"><a href="#cb1-25"></a>      git push</span></code></pre></div>
 <p>After registering an ssh key in github and letting <code>builds.sr.ht</code> use it through <code>secrets</code>, we can effectively forget about ever touching Github again. <strong>In 25 lines of yaml</strong>.</p>
-<p>Note to self: would be interesting to <code>slurp</code> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
+<p>Note to self: would be interesting to <a href="https://clojuredocs.org/clojure.core/slurp"><code>slurp</code></a> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
 
 </div>
 
@@ -156,6 +160,7 @@
                     <li><a href="/pages-output/cv/">CV</a></li>
                     
                 </ul>
+                
                 
                 <div id="recent">
                     <h3>Recent Posts</h3>
