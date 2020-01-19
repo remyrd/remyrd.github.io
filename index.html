@@ -55,80 +55,56 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">December 16, 2019</div>
+        <div class="col-lg-6">January 16, 2020</div>
         
     </div>
-    <h2>Sr.ht ex machina</h2>
+    <h2>Clojure for the Brave and True</h2>
     
-        A description of how this site is built.<br><i>tl;dr</i>: Cryogen + builds.sr.ht + gh pages
+        A reflection on one of the most recommended introductory books to Clojure
     
     
     <div id="post-tags">
         <b>Tags: </b>
         
-        <a href="/tags-output/meta/">meta</a>
+        <a href="/tags-output/books/">books</a>
+        
+        <a href="/tags-output/clojure/">clojure</a>
         
     </div>
     
 </div>
 <div>
-    <ol class="toc"><li><a href="#static-site-generator">Static site generator</a></li><li><a href="#automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</a></li></ol>
-    <p>A couple days back, I had the itch of getting a personal website. Mainly to stop maintaining a CV in <code>Latex</code> and have an easy reference to it.</p>
-<p>There were a couple requirements I had in mind, both from the toolset and maintainability perspectives.</p>
-<p>The site needed to be/have:</p>
+    
+    <p>by <strong>Daniel Higginbotham</strong> (<a href="https://twitter.com/nonrecursive">twitter</a>)</p>
+<p>2016</p>
+<h2 id="why-did-i-read-this">Why did I read this?</h2>
+<p>My interest in Clojure (and Lisp and Functional Programming) started a couple months ago when I first read about it in Uncle Bob's blog post <a href="https://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html">"Why Clojure?"</a>.</p>
+<blockquote>
+<p>In my mind, large systems equated to large syntax. Boy, was I wrong.</p>
+<p>-Uncle Bob</p>
+</blockquote>
+<p>Clojure is a hosted language. Its original and most prominently host is the JVM.</p>
+<p>I <em>dislike</em> Java. Still, I recognize the value of its ecosystem and am very grateful to the people that allowed the JVM to modernize software. In fact, I wrote my master's thesis in Kotlin (another JVM-powered language). It felt as a more forgiving Java spin at times, and an overcomplicated mess when trying to interop with specific libraries and frameworks.</p>
+<p>But, what do I know, I didn't spend time trying to learn Kotlin, I just needed to use some libraries written in it and every step away from plain Java was, in my view, one in the right direction. As far as I'm concerned, it was yet another JVM language that tried to replace Java with a slightly less horrible syntax and better guardrails.</p>
+<p>Clojure could have been the same story. But as anyone who scratches the surface of Web resources on the matter, I quickly wound up listening to its creator, Rich Hickey, rant about how things are done wrong in Java, and how this drove him to create Clojure.</p>
+<blockquote>
+<p>Java libraries in a language that was concieved in stark opposition of the Java mindset? Right on!</p>
+<p>-me</p>
+</blockquote>
+<h2 id="review">Review</h2>
+<p>The book is split in two. The first part is a really (sometimes too much so) gentle introduction to the language. Syntax, toolset, constructs, and the ideas behind them. This book was my first contact with Functional Programming, and many of the explanations and examples (which are sometimes delivered in contrast with the Object Oriented model) were very easy to follow and internalize, albeit the sometimes quirky examples and illustrations. I quickly understood Clojure is a language on its own, and the Java interop is not its main focus (as in, Java libraries with a nicer syntax), but just another feature that contributes to the language's "reach". It is totally Ok to instantiate objects when state is needed. This said, I skipped a couple chapters that I considered as filler: I don't need to learn how to use a text editor, nor a command line. I guess this just makes the book a lot more approachable to new programmers. I can see the appeal a couple years ago, but today one can confortably write Clojure (nREPL support and parenthesis handling) in any major editor.</p>
+<p>The most valuable things I learned from the first part is that Clojure is at its most efficient when treated like Lego blocks, with a specific philosophy centered around simplicity (non-compoundness). The book helps demonstrate this by introducing very powerful primitives which one (the reader) can organically use to figure out how the more complex ones are built. Second is the language's expressiveness. The separation of reader and evaluator is well explained, and although I'm not writing macros yet i feel I got a pretty good understanding of this and other core concepts in the lisp family of languages.</p>
+<p>The second part, "Advanced Topics", introduces some core libraries along with the concepts necessary to understand their purpose. Constructs are discussed such as thread handling, jvm interoperability, and polymorphism.</p>
+<p>Although well presented and thoroughly explained, one needs the time to internalize them and probably find a pet project to play with them. But this is a subjective opinion. The presentation is again bottom-up, and full of quirky but relatable "<a href="https://www.reddit.com/r/explainlikeimfive"> ELI5 </a>" examples before diving into the details and modus operandi. I will admit I have to read this part again, as I didn't do all the exercises (not easy to whip out the laptop in public transport). I'll update the post after I do, as a way to force myself into it.</p>
+<p>In summary I could hardly have found a more entertaining way to get introduced to the language. The book re-ignited my interest for learning new concepts, as I have seldom heard advocates in other languages describe simplicity and maintainability to the extent Clojurians have.</p>
+<h2 id="future-reading">Future reading</h2>
+<p>Since reading <strong>Clojure for the Brave and True</strong> I have indulged in the following material, which I will hopefully read at some point.</p>
 <ul>
-<li>Statically generated. We just need to download some HTML</li>
-<li>Markdown editing. Because I write MD all day</li>
-<li>Written in Clojure. Relevant to the next point</li>
-<li>Tweakable</li>
+<li><a href="https://elementsofclojure.com/">Elements of Clojure</a> by Zachary Tellman</li>
+<li><a href="https://pragprog.com/book/dswdcloj3/web-development-with-clojure-third-edition">Web Development with Clojure</a> by Dmitri Sotnikov and Scot Brown</li>
+<li><a href="http://shop.oreilly.com/product/0636920013754.do">Clojure Programming</a> by Chas Emerick</li>
+<li><a href="https://web.mit.edu/alexmv/6.037/sicp.pdf">SICP</a> by Harold Abelson</li>
 </ul>
-<p>The maintainability aspect had a simple goal: I don't want to fiddle with deployments. If my house catches fire I want to still be able to write about it. At the same time, i don't want to maintain both the source and the generated website. Ideally, my workflow consists of:</p>
-<ul>
-<li>Setup. <strong>ONCE</strong>. Never come back here.</li>
-<li>Write something and verify nothing breaks on <em>localhost</em></li>
-<li>Commit and Push the <strong>source</strong></li>
-<li>??</li>
-<li>Profit</li>
-</ul>
-<h3 id="static-site-generator">Static site generator</h3>
-<p>I soon figured <a href="https://cryogenweb.org"><strong>Cryogen</strong></a> was an ideal candidate meeting all the requirements. Besides setting up a custom markdown command to get tables compile the same way org-mode writes them, the experience was pretty much out-of-the-box.</p>
-<p>I took some time after getting the first version of the post out to get rid of a couple things. These have nothing to do with <em>Cryogen</em> itself but with its theme template.</p>
-<ul>
-<li>Goodbye Google (fonts). Not a fan of tracking. <code>Helvetica</code> is a nice default</li>
-<li>The only script running is <a href="https://highlightjs.org/"><code>highlightjs</code></a> in order to spice up code blocks</li>
-<li>All assets were downloaded and are served by the site</li>
-</ul>
-<p>These changes prevent the browser from reaching out elsewhere when loading the page.</p>
-<h3 id="automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</h3>
-<p>The generated page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
-<p>The build script pulls both projects, builds the sources, copy/pastes the resulting page, and pushes to Github.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">packages</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> clojure</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> leiningen</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandoc</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">sources</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@git.sr.ht:~popo/blog</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@github.com:remyrd/remyrd.github.io</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">secrets</span><span class="kw">:</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> dd63135f-599a-40f2-aad1-2a4e1fbc5d2c</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">tasks</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">  - </span><span class="fu">setup</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>      git config --global user.name &quot;Remy Rojas&quot;</span>
-<span id="cb1-14"><a href="#cb1-14"></a>      git config --global user.email &quot;remy@rojas.cz&quot;</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="kw">  - </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>      cd blog</span>
-<span id="cb1-17"><a href="#cb1-17"></a>      lein run</span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">  - </span><span class="fu">update-github</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>      ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span>
-<span id="cb1-20"><a href="#cb1-20"></a>      cd remyrd.github.io</span>
-<span id="cb1-21"><a href="#cb1-21"></a>      git rm -rf .</span>
-<span id="cb1-22"><a href="#cb1-22"></a>      cp -r ../blog/public/* .</span>
-<span id="cb1-23"><a href="#cb1-23"></a>      git add *</span>
-<span id="cb1-24"><a href="#cb1-24"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>      git push</span></code></pre></div>
-<p>After registering an ssh key in github and letting <code>builds.sr.ht</code> use it through <code>secrets</code>, we can effectively forget about ever touching Github again. <strong>In 25 lines of yaml</strong>.</p>
-<p>Note to self: would be interesting to <a href="https://clojuredocs.org/clojure.core/slurp"><code>slurp</code></a> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
 
 </div>
 
@@ -136,6 +112,8 @@
 
     <div id="prev-next">
         
+        
+        <a class="right" href="/posts-output/2019-12-16-hello-world/">Sr.ht ex machina &raquo;</a>
         
     </div>
 </div>
@@ -158,6 +136,8 @@
                     <h4>Recent Posts</h4>
                     <ul>
                         
+                        <li><a href="/posts-output/2020-01-16-brave-clojure/">Clojure for the Brave and True</a></li>
+                        
                         <li><a href="/posts-output/2019-12-16-hello-world/">Sr.ht ex machina</a></li>
                         
                     </ul>
@@ -167,6 +147,10 @@
                 <div id="tags">
                     <h4>Tags</h4>
                     <ul>
+                        
+                        <li><a href="/tags-output/books/">books</a></li>
+                        
+                        <li><a href="/tags-output/clojure/">clojure</a></li>
                         
                         <li><a href="/tags-output/meta/">meta</a></li>
                         
@@ -179,27 +163,27 @@
     
     <div class="article">
       <h4 class="title">
-        <a href="https://blog.jakubholy.net/2019/my-2019-in-review/" target="_blank" rel="noopener">My year 2019 in review</a>
+        <a href="https://drewdevault.com/2020/01/17/Effective-project-governance.html" target="_blank" rel="noopener">A philosophy of project governance</a>
       </h4>
-      <p class="summary">This has been a year of Clojure (and DevOps). Since the beginning of the year, I have worked to persuade my team to adopt Clojure instead of (or rather in addition to) to the current mixture of Java and Groovy, argued to rewrite a key batch job in Clojure…</p>
+      <p class="summary">I’ve been in the maintainer role for dozens of projects for a while now, and
+have moderated my fair share of conflicts. I’ve also been on the other side,
+many times, as a minor contributor watching or participating in conflict within
+other projects. Over the…</p>
       <small class="source">
-        via <a href="https://blog.jakubholy.net">Holy on Dev</a>
+        via <a href="https://drewdevault.com">Drew DeVault&#39;s Blog</a>
       </small>
-      <small class="date">December 31, 2019</small>
+      <small class="date">January 17, 2020</small>
     </div>
     
     <div class="article">
       <h4 class="title">
-        <a href="https://drewdevault.com/2019/12/30/dotfiles.html" target="_blank" rel="noopener">Managing my dotfiles as a git repository</a>
+        <a href="https://blog.jakubholy.net/2020/sharing-large-files-with-aws-s3-and-bittorrent/" target="_blank" rel="noopener">Sharing large files on flaky networks with AWS S3 and BitTorrent</a>
       </h4>
-      <p class="summary">There are many tools for managing your dotfiles - user-specific configuration
-files. GNU stow is an example. I’ve tried a few solutions over the years, but I
-settled on a very simple system several years ago which has served me very well
-in the time since: m…</p>
+      <p class="summary">How to share a 3GB archive with a remote client when both might have unreliable connection that doesn’t keep up for the full download? Upload it to S3 using multipart upload with a resume capability and download it from S3 using BitTorrent.</p>
       <small class="source">
-        via <a href="https://drewdevault.com">Drew DeVault&#39;s Blog</a>
+        via <a href="https://blog.jakubholy.net">Holy on Dev</a>
       </small>
-      <small class="date">December 30, 2019</small>
+      <small class="date">January 7, 2020</small>
     </div>
     
     <div class="article">
