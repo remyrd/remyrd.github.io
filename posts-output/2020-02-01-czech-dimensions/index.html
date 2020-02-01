@@ -2,19 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>remy.rojas: Sr.ht ex machina</title>
+    <title>remy.rojas: Czech dimensions - A foreigner&#39;s understanding of noun grammar</title>
     
 <meta name="keywords" content="language,czech,books,clojure,meta">
 
-<meta name="description" content="A description of how this site is built.&lt;br&gt;&lt;i&gt;tl;dr&lt;/i&gt;: Cryogen + builds.sr.ht + gh pages">
+<meta name="description" content="An attempt to concisely represent all possible ways one can misspell the Czech language">
 
-<meta property="og:description" content="A description of how this site is built.&lt;br&gt;&lt;i&gt;tl;dr&lt;/i&gt;: Cryogen + builds.sr.ht + gh pages">
+<meta property="og:description" content="An attempt to concisely represent all possible ways one can misspell the Czech language">
 
-<meta property="og:url" content="https://remy.rojas.cz/posts-output/2019-12-16-hello-world/" />
-<meta property="og:title" content="Sr.ht ex machina" />
+<meta property="og:url" content="https://remy.rojas.cz/posts-output/2020-02-01-czech-dimensions/" />
+<meta property="og:title" content="Czech dimensions - A foreigner&#39;s understanding of noun grammar" />
 <meta property="og:type" content="article" />
 
-    <link rel="canonical" href="https://remy.rojas.cz/posts-output/2019-12-16-hello-world/">
+    <link rel="canonical" href="https://remy.rojas.cz/posts-output/2020-02-01-czech-dimensions/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -62,87 +62,63 @@
 <div id="post">
     <div class="post-header">
     <div id="post-meta" class="row">
-        <div class="col-lg-6">December 16, 2019</div>
+        <div class="col-lg-6">February 1, 2020</div>
         
     </div>
-    <h2>Sr.ht ex machina</h2>
+    <h2>Czech dimensions - A foreigner&#39;s understanding of noun grammar</h2>
     
-        A description of how this site is built.<br><i>tl;dr</i>: Cryogen + builds.sr.ht + gh pages
+        An attempt to concisely represent all possible ways one can misspell the Czech language
     
     
     <div id="post-tags">
         <b>Tags: </b>
         
-        <a href="/tags-output/meta/">meta</a>
+        <a href="/tags-output/language/">language</a>
+        
+        <a href="/tags-output/czech/">czech</a>
         
     </div>
     
 </div>
 <div>
-    <ol class="toc"><li><a href="#static-site-generator">Static site generator</a></li><li><a href="#automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</a></li></ol>
-    <p>A couple days back, I had the itch of getting a personal website. Mainly to stop maintaining a CV in <code>Latex</code> and have an easy reference to it.</p>
-<p>There were a couple requirements I had in mind, both from the toolset and maintainability perspectives.</p>
-<p>The site needed to be/have:</p>
+    
+    <p>At the time of writing, I'm well into my 3rd year living in the Czech Republic. Along with many other foreigners residing here, I am reminded - on a daily basis - about my limited ability to communicate in the language.</p>
+<p>More than the vocabulary, I believe one of the major factors that contribute to the resilience of our english-speaking bubble is the upfront grammar complexity. Whereas languages I'm more familiar with tend to rely on context and articles to convey ideas about nouns:</p>
+<blockquote>
+<p><code>del aeropuerto (spanish)</code> can mean both <em>belonging</em> to the airport and <em>coming from</em> the airport</p>
+</blockquote>
+<p>Czech is very specific on how to <strong>decline</strong> the ending of nouns to match their function in the sentence.</p>
+<p>As a way to visualize all possible ways to decline a noun, I thought this could be expressed in a 3-dimensional (maybe 4 if counting with hard/soft consonant endings) matrix.</p>
+<p>Similar to a 3D version of <a href="https://en.wikipedia.org/wiki/Battleship_(game)">Battleship</a> (we could call it <code>Submarine</code> if there was a coastline) where repeated uses of the same ending count as segments of the same ship in a 2x4x7 cube space. That's <strong>56</strong> total possibilities.</p>
+<h2 id="number--amount">Number / Amount</h2>
+<p>The most straightforward concept. Singular or Plural. Some nouns, I've been told, can only exist in one of them.</p>
+<h2 id="gender">Gender</h2>
+<p>Similar to German, Czech manipulates the concept of the Neutral gender, eg. for beers and cars (very German indeed).</p>
+<p>Interestingly, masculine nouns further separate into animated and inanimated, in a concept I so far understand as either:</p>
 <ul>
-<li>Statically generated. We just need to download some HTML</li>
-<li>Markdown editing. Because I write MD all day</li>
-<li>Written in Clojure. Relevant to the next point</li>
-<li>Tweakable</li>
+<li>Potentially alive at some point in time (animated)</li>
+<li>Was never, will never, or is not supposed to be alive (inanimated)</li>
 </ul>
-<p>The maintainability aspect had a simple goal: I don't want to fiddle with deployments. If my house catches fire I want to still be able to write about it. At the same time, i don't want to maintain both the source and the generated website. Ideally, my workflow consists of:</p>
-<ul>
-<li>Setup. <strong>ONCE</strong>. Never come back here.</li>
-<li>Write something and verify nothing breaks on <em>localhost</em></li>
-<li>Commit and Push the <strong>source</strong></li>
-<li>??</li>
-<li>Profit</li>
-</ul>
-<h3 id="static-site-generator">Static site generator</h3>
-<p>I soon figured <a href="https://cryogenweb.org"><strong>Cryogen</strong></a> was an ideal candidate meeting all the requirements. Besides setting up a custom markdown command to get tables compile the same way org-mode writes them, the experience was pretty much out-of-the-box.</p>
-<p>I took some time after getting the first version of the post out to get rid of a couple things. These have nothing to do with <em>Cryogen</em> itself but with its theme template.</p>
-<ul>
-<li>Goodbye Google (fonts). Not a fan of tracking. <code>Helvetica</code> is a nice default</li>
-<li>The only script running is <a href="https://highlightjs.org/"><code>highlightjs</code></a> in order to spice up code blocks</li>
-<li>All assets were downloaded and are served by the site</li>
-</ul>
-<p>These changes prevent the browser from reaching out elsewhere when loading the page.</p>
-<h3 id="automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</h3>
-<p>The generated page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
-<p>The build script pulls both projects, builds the sources, copy/pastes the resulting page, and pushes to Github.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">packages</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> clojure</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> leiningen</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandoc</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">sources</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@git.sr.ht:~popo/blog</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@github.com:remyrd/remyrd.github.io</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">secrets</span><span class="kw">:</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> dd63135f-599a-40f2-aad1-2a4e1fbc5d2c</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">tasks</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">  - </span><span class="fu">setup</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>      git config --global user.name &quot;Remy Rojas&quot;</span>
-<span id="cb1-14"><a href="#cb1-14"></a>      git config --global user.email &quot;remy@rojas.cz&quot;</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="kw">  - </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>      cd blog</span>
-<span id="cb1-17"><a href="#cb1-17"></a>      lein run</span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">  - </span><span class="fu">update-github</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>      ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span>
-<span id="cb1-20"><a href="#cb1-20"></a>      cd remyrd.github.io</span>
-<span id="cb1-21"><a href="#cb1-21"></a>      git rm -rf .</span>
-<span id="cb1-22"><a href="#cb1-22"></a>      cp -r ../blog/public/* .</span>
-<span id="cb1-23"><a href="#cb1-23"></a>      git add *</span>
-<span id="cb1-24"><a href="#cb1-24"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>      git push</span></code></pre></div>
-<p>After registering an ssh key in github and letting <code>builds.sr.ht</code> use it through <code>secrets</code>, we can effectively forget about ever touching Github again. <strong>In 25 lines of yaml</strong>.</p>
-<p>Note to self: would be interesting to <a href="https://clojuredocs.org/clojure.core/slurp"><code>slurp</code></a> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
+<p>Grammar does not make this distiction for femenine nouns, which I'm assuming is left to the recipient's interpretation.</p>
+<h2 id="function-cases">Function (cases)</h2>
+<p>This is the meaty part.</p>
+<p>Czech counts with 7 different ways to name things based on their "function" in the sentence. Most of them we are familiar with, or at least see something being done (in other languages) to convey the same situation. They also like to rely on numbers to denote them.</p>
+<ol>
+<li>Nominative: Home. Nothing to do here</li>
+<li>Genitive: Belonging to</li>
+<li>Dative: The same nuance as indirect object</li>
+<li>Accusative: The direct object (also the mark of anyone who has tried to learn the language)</li>
+<li>Vocative: Used when addressing someone and/or something(s)</li>
+<li>Locative: When enouncing the place (physically and metaphorically) an action is happening in (on, around, etc).</li>
+<li>Instrumental: Can be used both when being <em>with</em> someone, but also when doing something <em>with</em> a tool</li>
+</ol>
 
 </div>
 
     <div id="prev-next">
         
-        <a href="/posts-output/2020-01-16-brave-clojure/">&laquo; Clojure for the Brave and True</a>
         
+        <a class="right" href="/posts-output/2020-01-16-brave-clojure/">Clojure for the Brave and True &raquo;</a>
         
     </div>
 
