@@ -109,31 +109,31 @@
 <h3 id="automating-deployments-remyrojascz">Automating deployments: remy.rojas.cz</h3>
 <p>The generated page is hosted on Github thanks to pages using a custom domain. The solution is free[TM] and too simple to resist. The site's source is instead hosted on <a href="https://meta.sr.ht">Sourcehut</a> and uses its <a href="https://builds.sr.ht">Builds</a> deployment platform.</p>
 <p>The build script pulls both projects, builds the sources, copy/pastes the resulting page, and pushes to Github.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">packages</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> clojure</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> leiningen</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandoc</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">sources</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@git.sr.ht:~popo/blog</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@github.com:remyrd/remyrd.github.io</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">secrets</span><span class="kw">:</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> dd63135f-599a-40f2-aad1-2a4e1fbc5d2c</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">tasks</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">  - </span><span class="fu">setup</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>      git config --global user.name &quot;Remy Rojas&quot;</span>
-<span id="cb1-14"><a href="#cb1-14"></a>      git config --global user.email &quot;remy@rojas.cz&quot;</span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="kw">  - </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>      cd blog</span>
-<span id="cb1-17"><a href="#cb1-17"></a>      lein run</span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="kw">  - </span><span class="fu">update-github</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>      ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span>
-<span id="cb1-20"><a href="#cb1-20"></a>      cd remyrd.github.io</span>
-<span id="cb1-21"><a href="#cb1-21"></a>      git rm -rf .</span>
-<span id="cb1-22"><a href="#cb1-22"></a>      cp -r ../blog/public/* .</span>
-<span id="cb1-23"><a href="#cb1-23"></a>      git add *</span>
-<span id="cb1-24"><a href="#cb1-24"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
-<span id="cb1-25"><a href="#cb1-25"></a>      git push</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> archlinux</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">packages</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> clojure</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> leiningen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandoc</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">sources</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@git.sr.ht:~popo/blog</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> git@github.com:remyrd/remyrd.github.io</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="fu">secrets</span><span class="kw">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="at">  </span><span class="kw">-</span><span class="at"> dd63135f-599a-40f2-aad1-2a4e1fbc5d2c</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">tasks</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">  - </span><span class="fu">setup</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>      git config --global user.name &quot;Remy Rojas&quot;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>      git config --global user.email &quot;remy@rojas.cz&quot;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="kw">  - </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>      cd blog</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>      lein run</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="kw">  - </span><span class="fu">update-github</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>      ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>      cd remyrd.github.io</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>      git rm -rf .</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>      cp -r ../blog/public/* .</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>      git add *</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>      git commit -am &quot;job $JOB_ID&quot;</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>      git push</span></code></pre></div>
 <p>After registering an ssh key in github and letting <code>builds.sr.ht</code> use it through <code>secrets</code>, we can effectively forget about ever touching Github again. <strong>In 25 lines of yaml</strong>.</p>
 <p>Note to self: would be interesting to <a href="https://clojuredocs.org/clojure.core/slurp"><code>slurp</code></a> the actual <code>.build.yml</code> file into the content at compile time in case it becomes outdated.</p>
 
@@ -161,7 +161,9 @@
                 &#8594;<a href="https://github.com/remyrd">github</a><br>
                 &#8594;<a href="https://git.sr.ht/~popo">sourcehut</a><br>
                 &#8594;<a href="https://www.goodreads.com/user/show/106910881-remy-rojas">goodreads</a><br>
-                &#8594;<a href="https://fosstodon.org/@remy">mastodon</a>
+                &#8594;<a href="https://fosstodon.org/@remy">mastodon</a><br>
+                &#8594;<a href="https://twitter.com/Remy_sajoR">twitter</a><br>
+                &#8594;<a href="https://www.linkedin.com/in/%E2%98%95-remy-rojas-51199b131/">linkedin</a>
                 
                 
                 
@@ -202,27 +204,28 @@
     
     <div class="article">
       <h4 class="title">
-        <a href="https://drewdevault.com/2020/01/27/KnightOS-was-interesting.html" target="_blank" rel="noopener">KnightOS was an interesting operating system</a>
+        <a href="https://drewdevault.com/2020/09/21/Gemini-TOFU.html" target="_blank" rel="noopener">TOFU recommendations for Gemini</a>
       </h4>
-      <p class="summary">KnightOS is an operating system I started writing about
-10 years ago, for Texas Instruments line of z80 calculators — the TI-73,
-TI-83+, TI-84+, and similar calculators are supported. It still gets the rare
-improvements, but these days myself and most of the…</p>
+      <p class="summary">I will have more to say about Gemini in the future, but for now, I wanted to
+write up some details about one thing in particular: the trust-on-first-use
+algorithm I implemented for my client, gmni. I think you should implement
+this algorithm, too!
+First of al…</p>
       <small class="source">
-        via <a href="https://drewdevault.com">Drew DeVault&#39;s Blog</a>
+        via <a href="https://drewdevault.com">Blogs on Drew DeVault&#39;s blog</a>
       </small>
-      <small class="date">January 27, 2020</small>
+      <small class="date">September 21, 2020</small>
     </div>
     
     <div class="article">
       <h4 class="title">
-        <a href="https://blog.jakubholy.net/2020/sharing-large-files-with-aws-s3-and-bittorrent/" target="_blank" rel="noopener">Sharing large files on flaky networks with AWS S3 and BitTorrent</a>
+        <a href="https://blog.jakubholy.net/2020/error-handling-in-fulcro/" target="_blank" rel="noopener">Error handling in Fulcro: 3 approaches</a>
       </h4>
-      <p class="summary">How to share a 3GB archive with a remote client when both might have unreliable connection that doesn’t keep up for the full download? Upload it to S3 using multipart upload with a resume capability and download it from S3 using BitTorrent.</p>
+      <p class="summary">I present three ways of detecting, handling, and showing server-side errors: globally and at the component level.By default, Fulcro considers only non-200 HTTP status as an error. It is up to you to tell it what is an error and how to handle it.This is so…</p>
       <small class="source">
         via <a href="https://blog.jakubholy.net">Holy on Dev</a>
       </small>
-      <small class="date">January 7, 2020</small>
+      <small class="date">September 11, 2020</small>
     </div>
     
     <div class="article">
